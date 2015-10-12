@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Receiver</title>
+	</head>
+	<body>
+		<script src="https://cdn.pubnub.com/pubnub-dev.js"></script>
+
+		<!-- Instantiate PubNub -->
+		<script type="text/javascript">
+                var count = 0;
+	    		var PUBNUB_demo = PUBNUB.init({
+		        publish_key: 'pub-c-11fe35af-0b36-4d11-88f6-532dd18e2c79',
+		        subscribe_key: 'sub-c-b635a546-70b7-11e5-a5ee-02ee2ddab7fe'
+		    	});
+			PUBNUB_demo.subscribe({
+   				 channel: 'demo_tutorial',
+                                  message: function(m){count++;console.log("count: "+count);}
+			});
+		</script>
+	</body>
+</html>
+
+

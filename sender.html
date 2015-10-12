@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Sender</title>
+	</head>
+	<body>
+		<script src="https://cdn.pubnub.com/pubnub-dev.js"></script>
+
+		<!-- Instantiate PubNub -->
+		<script type="text/javascript">
+
+	    		var PUBNUB_demo = PUBNUB.init({
+		        publish_key: 'pub-c-11fe35af-0b36-4d11-88f6-532dd18e2c79',
+		        subscribe_key: 'sub-c-b635a546-70b7-11e5-a5ee-02ee2ddab7fe'
+		    	});
+			/*PUBNUB_demo.subscribe({
+   				 channel: 'demo_tutorial',
+				 message: function(m){console.log(m)}
+			});*/
+            for(var i = 0;i < 100;i++){
+                PUBNUB_demo.publish({
+                                    channel: 'demo_tutorial',
+                                    message: {"color":"blue"}
+                });
+            }
+        console.log("sent all");
+		</script>
+	</body>
+</html>
