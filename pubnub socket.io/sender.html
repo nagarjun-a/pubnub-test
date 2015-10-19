@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Sender</title>
+	</head>
+	<body onunload = "close()">
+        <button id = "join" onclick = "join()">Join</button>
+        <button id = "leave" onclick = "leave()">Leave</button>
+		<script src="http://cdn.pubnub.com/socket.io.min.js"></script>
+
+		<!-- Instantiate PubNub -->
+		<script type="text/javascript">
+            
+            // IMPORTANT: PubNub Setup with Account
+            var pubnub_setup = {
+                channel       : 'demo_tutorial',
+                publish_key   : 'pub-c-11fe35af-0b36-4d11-88f6-532dd18e2c79',
+                subscribe_key : 'sub-c-b635a546-70b7-11e5-a5ee-02ee2ddab7fe',
+                user          : 'sender'
+            };
+        
+        var socket = io.connect( 'http://pubsub.pubnub.com', pubnub_setup );
+        
+        socket.on( 'connect', function() {
+                  console.log('Connection Established! Ready to send/receive data!');
+                  socket.send('my message here');
+                  socket.send(1234567);
+                  socket.send([1,2,3,4,5]);
+                  socket.send({ apples : 'bananas' });
+                  } );
+                  
+                  socket.on( 'message', function(message) {
+                            console.log(message);
+                            } );
+                            
+                            socket.on( 'disconnect', function() {
+                                      console.log('my connection dropped');
+                                      } );
+                                      
+                                      // Extra event in Socket.IO provided by PubNub
+                                      socket.on( 'reconnect', function() {
+                                                console.log('my connection has been restored!');
+                                                } );
+            
+            
+            
+            
+            
+	    				</script>
+	</body>
+</html>
